@@ -1,8 +1,7 @@
 function execute(commands) {
     const CUBE_DIMENSIONS = 10;
     const DIRECTIONS = 'NESW';
-    let x = 0;
-    let y = 0;
+    let coords = { x: 0, y: 0 };
     let direction = 0;
 
     commands.split("").forEach(command => {
