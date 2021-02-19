@@ -22,7 +22,7 @@ function execute(commands) {
     
     let bearing = DIRECTIONS[direction % DIRECTIONS.length];
 
-    return `${x}:${y % CUBE_DIMENSIONS}:${bearing}`;
+    return `${coords.x}:${coords.y % CUBE_DIMENSIONS}:${bearing}`;
 }
 
 function getMove(direction) {
