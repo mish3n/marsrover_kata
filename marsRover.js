@@ -1,12 +1,17 @@
 function execute(commands) {
     const CUBE_DIMENSIONS = 10;
     const DIRECTIONS = 'NESW';
+    let x = 0;
     let y = 0;
     let direction = 0;
 
     commands.split("").forEach(command => {
         if (command === "M") {
-            y++;
+            if(direction === 0 || direction === 2) {
+                y++;
+            } else {
+                x++;
+            }
         } else if (command === "R") {
             direction ++;
         } else if (command === "L") {
@@ -20,7 +25,7 @@ function execute(commands) {
     
     let bearing = DIRECTIONS[direction % DIRECTIONS.length];
 
-    return `0:${y % CUBE_DIMENSIONS}:${bearing}`;
+    return `${x}:${y % CUBE_DIMENSIONS}:${bearing}`;
 }
 
 module.exports = { execute };
