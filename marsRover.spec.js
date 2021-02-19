@@ -13,6 +13,7 @@ describe("Mars Rover", () => {
 
     it("should wrap around", () => {
         expect(execute("MMMMMMMMMM")).toEqual("0:0:N");
+        expect(execute("MMMMMMMMMMMM")).toEqual("0:2:N");
     });
 
     // it("should change direction correctly", () => {
