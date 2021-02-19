@@ -5,7 +5,7 @@ describe("Mars Rover", () => {
         expect(execute("")).toEqual("0:0:N");
     });
 
-    it("should move", () => {
+    it("should move north", () => {
         expect(execute("M")).toEqual("0:1:N");
         expect(execute("MMM")).toEqual("0:3:N");
         expect(execute("MMMMM")).toEqual("0:5:N");
@@ -52,6 +52,16 @@ describe("Mars Rover", () => {
 
     it("should move west", () => {
         expect(execute("LM")).toEqual("9:0:W");
+        expect(execute("LMM")).toEqual("8:0:W");
+        expect(execute("LMMMMM")).toEqual("5:0:W");
+    });
 
+    it("should wrap around left side of world", () => {
+        expect(execute("LMMMMMMMMMM")).toEqual("0:0:W");
+        expect(execute("LMMMMMMMMMMMM")).toEqual("8:0:W");
+    });
+
+    it("given a grid with no obstacles, input MMRMMLM gives output 2:3:N", () => {
+        expect(execute("MMRMMLM")).toEqual("2:3:N");
     });
 });
