@@ -14,7 +14,7 @@ function execute(commands) {
         if (command === "M") {
             coords = cmds[command](coords);
         } else if (command === "R") {
-            coords.direction ++;
+            coords = cmds[command](coords);
         } else if (command === "L") {
             coords.direction --;
         }
@@ -56,9 +56,11 @@ function move(coords) {
     return newCoords;
 }
 
-function turnRight() {
+function turnRight(coords) {
+    let newCoords = {...coords};
+    newCoords.direction += 1;
+    newCoords.direction %= DIRECTIONS.length;
 }
-
 
 function turnLeft() {
 
