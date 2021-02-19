@@ -26,6 +26,10 @@ describe("Mars Rover", () => {
 
     it("should turn left", () => {
         expect(execute("L")).toEqual("0:0:W");
+        expect(execute("LL")).toEqual("0:0:S");
+        expect(execute("LLL")).toEqual("0:0:E");
+        expect(execute("LLLL")).toEqual("0:0:N");
+        expect(execute("LLLLL")).toEqual("0:0:W");
 
     });
 });
