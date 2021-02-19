@@ -1,40 +1,59 @@
+const DIRECTIONS = 'NESW';
+
 function execute(commands) {
 
-    let commands = {"M": move, "R" : turnRight, "L": turnLeft};
-    const CUBE_DIMENSIONS = 10;
-    const DIRECTIONS = 'NESW';
+    let cmds = {"M": move, "R" : turnRight, "L": turnLeft};
+    
     let coords = { x: 0, y: 0, direction: 0 };
+
+    // [...commands].forEach(command => {
+    //     coords = cmds[command](coords);
+    // });
 
     commands.split("").forEach(command => {
         if (command === "M") {
-            let move = getMove(direction);
-            coords.x += move.x;
-            coords.y += move.y;
-
-            if (coords.y < 0) {
-                coords.y = 9;
-            }
-            if (coords.x < 0) {
-                coords.x = 9;
-            }
+            coords = cmds[command](coords);
         } else if (command === "R") {
-            direction ++;
+            coords.direction ++;
         } else if (command === "L") {
-            direction --;
+            coords.direction --;
         }
         
-        if(direction < 0) {
-            direction = 3;
+        if(coords.direction < 0) {
+            coords.direction = 3;
         }
     });
     
     let bearing = DIRECTIONS[coords.direction % DIRECTIONS.length];
 
-    return `${coords.x % CUBE_DIMENSIONS}:${coords.y % CUBE_DIMENSIONS}:${bearing}`;
+    return `${coords.x}:${coords.y}:${bearing}`;
 }
 
-function move() {
+function move(coords) {
+    const CUBE_DIMENSIONS = 10;
 
+    const moves = [
+        { x: 0, y: 1 },
+        { x: 1, y: 0 },
+        { x: 0, y: -1 },
+        { x: -1, y: 0 },
+    ];
+
+    let newCoords = {...coords};
+    newCoords.x += moves[coords.direction].x;
+    newCoords.y += moves[coords.direction].y;
+
+    if (newCoords.y < 0) {
+        newCoords.y = 9;
+    }
+    if (newCoords.x < 0) {
+        newCoords.x = 9;
+    }
+
+    newCoords.x = newCoords.x % CUBE_DIMENSIONS;
+    newCoords.y = newCoords.y % CUBE_DIMENSIONS;
+
+    return newCoords;
 }
 
 function turnRight() {
