@@ -3,14 +3,21 @@ function execute(command) {
     
     let commands = command.split("");
     let y = 0;
+    let direction = "N";
     commands.forEach(item => {
         if (item === "M") {
             y++;
         }
+        
+        if (item === "R") {
+            direction = "E";
+        }
+
+
     });
     
 
-    return `0:${y % CUBE_DIMENSIONS}:N`;
+    return `0:${y % CUBE_DIMENSIONS}:${direction}`;
 }
 
 module.exports = { execute };
