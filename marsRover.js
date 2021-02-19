@@ -1,15 +1,12 @@
-function execute(command) {
+function execute(commands) {
     const CUBE_DIMENSIONS = 10;
     
-    let commands = command.split("");
     let y = 0;
     let direction = "N";
-    commands.forEach(item => {
-        if (item === "M") {
+    commands.split("").forEach(command => {
+        if (command === "M") {
             y++;
-        }
-        
-        if (item === "R") {
+        } else if (command === "R") {
             direction = "E";
         }
 
