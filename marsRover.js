@@ -1,8 +1,9 @@
 function execute(commands) {
+
+    let commands = {"M": move, "R" : turnRight, "L": turnLeft};
     const CUBE_DIMENSIONS = 10;
     const DIRECTIONS = 'NESW';
-    let coords = { x: 0, y: 0 };
-    let direction = 0;
+    let coords = { x: 0, y: 0, direction: 0 };
 
     commands.split("").forEach(command => {
         if (command === "M") {
@@ -27,10 +28,23 @@ function execute(commands) {
         }
     });
     
-    let bearing = DIRECTIONS[direction % DIRECTIONS.length];
+    let bearing = DIRECTIONS[coords.direction % DIRECTIONS.length];
 
     return `${coords.x % CUBE_DIMENSIONS}:${coords.y % CUBE_DIMENSIONS}:${bearing}`;
 }
+
+function move() {
+
+}
+
+function turnRight() {
+}
+
+
+function turnLeft() {
+
+}
+
 
 function getMove(direction) {
     const moves = [
