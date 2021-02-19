@@ -9,6 +9,9 @@ function execute(commands) {
             y++;
         } else if (command === "R") {
             direction ++;
+            if (direction > 3) {
+                direction = 0;
+            }
         }
 
     });

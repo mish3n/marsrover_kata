@@ -20,6 +20,6 @@ describe("Mars Rover", () => {
         expect(execute("R")).toEqual("0:0:E");
         expect(execute("RR")).toEqual("0:0:S");
         expect(execute("RRR")).toEqual("0:0:W");
-        //expect(execute("RRRR")).toEqual("0:0:N");
+        expect(execute("RRRR")).toEqual("0:0:N");
     });
 });
