@@ -9,8 +9,13 @@ function execute(commands) {
             y++;
         } else if (command === "R") {
             direction ++;
+        } else if (command === "L") {
+            direction --;
         }
-
+        
+        if(direction < 0) {
+            direction = 3;
+        }
     });
     
     let bearing = DIRECTIONS[direction % DIRECTIONS.length];
