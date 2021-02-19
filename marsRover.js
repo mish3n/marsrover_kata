@@ -1,16 +1,14 @@
 function execute(commands) {
     const CUBE_DIMENSIONS = 10;
     const DIRECTIONS = 'NESW';
-    let x = 0;
-    let y = 0;
-    //let coords = { x: 0, y: 0 };
+    let coords = { x: 0, y: 0 };
     let direction = 0;
 
     commands.split("").forEach(command => {
         if (command === "M") {
             let move = getMove(direction);
-            x += move.x;
-            y += move.y;
+            coords.x += move.x;
+            coords.y += move.y;
         } else if (command === "R") {
             direction ++;
         } else if (command === "L") {
