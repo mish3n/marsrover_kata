@@ -9,14 +9,11 @@ function execute(commands) {
             y++;
         } else if (command === "R") {
             direction ++;
-            if (direction > 3) {
-                direction = 0;
-            }
         }
 
     });
     
-    let bearing = DIRECTIONS.charAt(direction);
+    let bearing = DIRECTIONS[direction % DIRECTIONS.length];
 
     return `0:${y % CUBE_DIMENSIONS}:${bearing}`;
 }
