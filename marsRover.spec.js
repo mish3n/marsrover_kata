@@ -45,5 +45,8 @@ describe("Mars Rover", () => {
 
     it("should move south", () => {
         expect(execute("RRM")).toEqual("0:9:S");
+        expect(execute("RRMMM")).toEqual("0:7:S");
+        expect(execute("RRMMMMMMMMMM")).toEqual("0:0:S");
+        expect(execute("RRMMMMMMMMMMM")).toEqual("0:9:S");
     });
 });
