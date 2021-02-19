@@ -1,0 +1,6 @@
+{
+    "name": "tennis-kata",
+    "jest": {
+      "verbose": true
+    }
+  }
