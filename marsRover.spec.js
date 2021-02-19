@@ -40,6 +40,10 @@ describe("Mars Rover", () => {
 
     it("should wrap around right side of world", () => {
         expect(execute("RMMMMMMMMMM")).toEqual("0:0:E");
+        expect(execute("RMMMMMMMMMMMM")).toEqual("2:0:E");
+    });
 
+    it("should move south", () => {
+        expect(execute("RRM")).toEqual("0:9:S");
     });
 });
