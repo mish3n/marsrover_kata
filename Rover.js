@@ -7,15 +7,13 @@ class Rover {
         { x: -1, y: 0 },
     ];
 
-    constructor(x, y, d) {
-        this.x = x;
-        this.y = y;
+    constructor(coords, d) {
+        this.coords = coords;
         this.d = d;
     }
 
     move = () => {
-        this.x += this.MOVES[this.d].x;
-        this.y += this.MOVES[this.d].y;
+        this.coords.addDeviation(this.MOVES[this.d]);
     }
 
     turnRight = () => {
@@ -26,14 +24,13 @@ class Rover {
         this.d -= 1;
     }
 
-    setOnLocation = (x, y, d) => {
-        this.x = x;
-        this.y = y;
+    setOnLocation = (coords, d) => {
+        this.coords = coords;
         this.d = d;
     }
 
     reportLocation = () => {
-        return `${this.x}:${this.y}:${this.DIRECTIONS[this.d]}`;
+        return `${this.coords.x}:${this.coords.y}:${this.DIRECTIONS[this.d]}`;
     }
 }
 
