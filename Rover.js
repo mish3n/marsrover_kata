@@ -1,7 +1,7 @@
 const { Coords } = require("./Coords");
+const DIRECTIONS = require("./DirectionEnum");
 
 class Rover {
-    DIRECTIONS = 'NESW';
     MOVES = [
         { x: 0, y: 1 },
         { x: 1, y: 0 },
@@ -9,14 +9,14 @@ class Rover {
         { x: -1, y: 0 },
     ];
 
-    constructor(coords, d) {
+    constructor(coords, direction) {
         this.coords = coords;
-        this.d = d;
+        this.direction = direction;
         this.hasRevertedState = false;
     }
 
     hydrate = () => {
-        var memento = JSON.stringify({...this.coords, d: this.d});
+        var memento = JSON.stringify({...this.coords, d: this.direction});
         return memento;
     }
  
@@ -27,24 +27,24 @@ class Rover {
     }
 
     move = () => {
-        this.coords.addDeviation(this.MOVES[this.d]);
+        this.coords.addDeviation(this.MOVES[this.direction]);
     }
 
     turnRight = () => {
-        this.d += 1;
+        this.direction += 1;
     }
 
     turnLeft = () => {
-        this.d -= 1;
+        this.direction -= 1;
     }
 
     setOnLocation = (coords, d) => {
         this.coords = coords;
-        this.d = d;
+        this.direction = d;
     }
 
     reportLocation = () => {
-        return `${this.hasRevertedState ? "O:" : ""}${this.coords.x}:${this.coords.y}:${this.DIRECTIONS[this.d]}`;
+        return `${this.hasRevertedState ? "O:" : ""}${this.coords.x}:${this.coords.y}:${DIRECTIONS[this.direction]}`;
     }
 }
 
