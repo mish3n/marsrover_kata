@@ -6,6 +6,8 @@ class CommandModule {
         this.rover = rover;
         this.path = path;
         this.caretaker = [];
+        
+        this.caretaker.push(this.rover.hydrate());
     }
 
     executePath = () => {
