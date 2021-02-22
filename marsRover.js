@@ -1,47 +1,23 @@
-const DIRECTIONS = 'NESW';
-const CUBE_DIMENSIONS = 10;
+const Rover = require("./Rover").Rover;
 
 function execute(input) {
-    let commands = {"M": move, "R" : turnRight, "L": turnLeft};
-    let coords = { x: 0, y: 0, direction: 0 };
+    const rover = new Rover(0, 0, 0);
 
+    let commands = {"M": rover.move, "R" : rover.turnRight, "L": rover.turnLeft};
+    
     [...input].forEach(command => {
-        coords = commands[command](coords);
+        commands[command]();
+        keepCoordsWithinBoundries(rover);
     });
 
-    return `${coords.x}:${coords.y}:${DIRECTIONS[coords.direction]}`;
+    return rover.reportLocation();
 }
 
-function move(coords) {
-    const moves = [
-        { x: 0, y: 1 },
-        { x: 1, y: 0 },
-        { x: 0, y: -1 },
-        { x: -1, y: 0 },
-    ];
-
-    coords.x += moves[coords.direction].x;
-    coords.y += moves[coords.direction].y;
-
-    return keepCoordsWithinBoundries(coords);
-}
-
-function turnRight(coords) {
-    coords.direction += 1;
-    return keepCoordsWithinBoundries(coords);
-}
-
-function turnLeft(coords) {
-    coords.direction -= 1;
-    return keepCoordsWithinBoundries(coords);
-}
-
-function keepCoordsWithinBoundries(coords) {
-    coords.x = keepNumberWithinBoundries(coords.x, 0, CUBE_DIMENSIONS);
-    coords.y = keepNumberWithinBoundries(coords.y, 0, CUBE_DIMENSIONS);
-    coords.direction = keepNumberWithinBoundries(coords.direction, 0, DIRECTIONS.length);
-
-    return coords;
+function keepCoordsWithinBoundries(rover) {
+    let x = keepNumberWithinBoundries(rover.x, 0, 10);
+    let y = keepNumberWithinBoundries(rover.y, 0, 10);
+    let d = keepNumberWithinBoundries(rover.d, 0, 4);
+    rover.setOnLocation(x, y, d);
 }
 
 function keepNumberWithinBoundries(number, min, max) {
