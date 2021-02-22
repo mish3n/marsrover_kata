@@ -6,7 +6,7 @@ class CommandModule {
         this.rover = rover;
         this.path = path;
         this.caretaker = [];
-        
+
         this.caretaker.push(this.rover.hydrate());
     }
 
@@ -25,11 +25,11 @@ class CommandModule {
 
         commands[command]();
         this.keepRoverWithinGrid();
+        if(!this.grid.canMoveToCell(this.rover.coords)) {
+            this.rover.dehydrate(this.caretaker.pop());
+        }
 
         this.caretaker.push(this.rover.hydrate());
-        if(!this.grid.canMoveToCell(this.rover.coords)) {
-            this.rover.dehydrate(this.caretaker.shift());
-        }
     }
 
     keepRoverWithinGrid = () => {

@@ -12,6 +12,7 @@ class Rover {
     constructor(coords, d) {
         this.coords = coords;
         this.d = d;
+        this.hasRevertedState = false;
     }
 
     hydrate = () => {
@@ -22,6 +23,7 @@ class Rover {
     dehydrate = (memento) => {
         var m = JSON.parse(memento);
         this.setOnLocation(new Coords(m.x, m.y), m.d);
+        this.hasRevertedState = true;
     }
 
     move = () => {
@@ -42,7 +44,7 @@ class Rover {
     }
 
     reportLocation = () => {
-        return `${this.coords.x}:${this.coords.y}:${this.DIRECTIONS[this.d]}`;
+        return `${this.hasRevertedState ? "O:" : ""}${this.coords.x}:${this.coords.y}:${this.DIRECTIONS[this.d]}`;
     }
 }
 
