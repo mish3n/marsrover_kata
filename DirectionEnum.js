@@ -1,0 +1,3 @@
+const DIRECTIONS = "NESW";
+
+module.exports.DIRECTIONS = DIRECTIONS;
