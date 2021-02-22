@@ -5,6 +5,7 @@ class CommandModule {
         this.grid = grid;
         this.rover = rover;
         this.path = path;
+        this.caretaker = [];
     }
 
     executePath = () => {
@@ -22,6 +23,11 @@ class CommandModule {
 
         commands[command]();
         this.keepRoverWithinGrid();
+
+        this.caretaker.push(this.rover.hydrate());
+        if(!this.grid.canMoveToCell(this.rover.coords)) {
+            this.rover.dehydrate(this.caretaker.shift());
+        }
     }
 
     keepRoverWithinGrid = () => {

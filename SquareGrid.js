@@ -4,7 +4,7 @@ class SquareGrid {
         this.obstacles = obstacles;
     }
 
-    isCellFree = (coords) => {
+    canMoveToCell = (coords) => {
         return !this.obstacles.some(o => o.x === coords.x && o.y === coords.y);
     }
 }

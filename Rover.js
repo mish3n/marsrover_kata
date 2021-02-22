@@ -1,3 +1,5 @@
+const { Coords } = require("./Coords");
+
 class Rover {
     DIRECTIONS = 'NESW';
     MOVES = [
@@ -10,6 +12,16 @@ class Rover {
     constructor(coords, d) {
         this.coords = coords;
         this.d = d;
+    }
+
+    hydrate = () => {
+        var memento = JSON.stringify({...this.coords, d: this.d});
+        return memento;
+    }
+ 
+    dehydrate = (memento) => {
+        var m = JSON.parse(memento);
+        this.setOnLocation(new Coords(m.x, m.y), m.d);
     }
 
     move = () => {
