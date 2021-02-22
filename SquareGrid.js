@@ -1,10 +1,11 @@
 class SquareGrid {
-    constructor(size) {
+    constructor(size, obstacles = []) {
         this.size = size;
+        this.obstacles = obstacles;
     }
 
-    isCellFree = () => {
-        return true;
+    isCellFree = (coords) => {
+        return !this.obstacles.some(o => o.x === coords.x && o.y === coords.y);
     }
 }
 
