@@ -1,5 +1,5 @@
 const { Coords } = require("./Coords");
-const DIRECTIONS = require("./DirectionEnum");
+const DIRECTIONS = require("./DirectionEnum").DIRECTIONS;
 
 class Rover {
     MOVES = [

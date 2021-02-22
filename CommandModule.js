@@ -1,17 +1,17 @@
 const Coords = require("./Coords").Coords;
+const DIRECTIONS = require("./DirectionEnum").DIRECTIONS;
 
 class CommandModule {
-    constructor(grid, rover, path) {
+    constructor(grid, rover) {
         this.grid = grid;
         this.rover = rover;
-        this.path = path;
         this.caretaker = [];
 
         this.caretaker.push(this.rover.hydrate());
     }
 
-    executePath = () => {
-        [...this.path].forEach(step => {
+    executePath = (path) => {
+        [...path].forEach(step => {
             this.executeCommand(step);
         });
     }
@@ -35,7 +35,7 @@ class CommandModule {
     keepRoverWithinGrid = () => {
         let x = this.keepNumberWithinBoundries(this.rover.coords.x, 0, this.grid.size);
         let y = this.keepNumberWithinBoundries(this.rover.coords.y, 0, this.grid.size);
-        let d = this.keepNumberWithinBoundries(this.rover.d, 0, 4);
+        let d = this.keepNumberWithinBoundries(this.rover.direction, 0, DIRECTIONS.length);
         this.rover.setOnLocation(new Coords(x, y), d);
     }
 
